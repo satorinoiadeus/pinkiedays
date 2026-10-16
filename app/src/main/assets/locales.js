@@ -1,0 +1,1 @@
+document.write('<script src="locales-core.js"><\\/script><script src="locale-en.js"><\\/script><script src="locale-ru.js"><\\/script><script src="locale-ky.js"><\\/script><script src="locale-kk.js"><\\/script><script src="locale-uz.js"><\\/script><script src="locale-tg.js"><\\/script><script src="locale-tr.js"><\\/script>');
