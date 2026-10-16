@@ -7,7 +7,7 @@
 <title>Pinkie Days ♡</title>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-view="today">
 <div class="ambient" id="ambient"></div>
 <div id="stickerLayer" aria-hidden="true"></div>
 <div class="app">
@@ -18,102 +18,174 @@
     </div>
     <div class="top-actions">
       <select class="select" id="languageSelect" aria-label="Language"></select>
-      <select class="select" id="themeSelect" aria-label="Theme">
-        <option value="pink" data-i18n="pink"></option>
-        <option value="dark" data-i18n="dark"></option>
-        <option value="halloween" data-i18n="halloween"></option>
-      </select>
       <button class="pill" id="sparkleBtn">✨ <span data-i18n="sparkle"></span></button>
     </div>
   </header>
 
-  <div class="grid">
-    <main class="stack">
-      <section class="card focus-card" id="focusCard">
-        <div class="section-title"><div><h2>🎯 <span data-i18n="focus"></span></h2><div class="tiny" data-i18n="focusSub"></div></div><span class="tag">ADHD ♡</span></div>
-        <div class="now-box">
-          <div class="now-label" data-i18n="focus"></div>
-          <div class="now-task" id="nowTask" data-i18n="noFocus"></div>
-          <div class="tiny" id="nowTiny"></div>
-          <div class="timer" id="focusTimer">05:00</div>
-        </div>
-        <div class="focus-actions">
-          <button class="mini-btn" id="pickOne" data-i18n="pickOne"></button>
-          <button class="mini-btn" id="makeTiny" data-i18n="makeTiny"></button>
-          <button class="mini-btn" id="timerBtn" data-i18n="start5"></button>
-          <button class="mini-btn" id="focusOnlyBtn" data-i18n="focusMode"></button>
-        </div>
-      </section>
+  <section class="page active" id="page-today" data-page="today">
+    <div class="grid">
+      <main class="stack">
+        <section class="card focus-card" id="focusCard">
+          <div class="section-title"><div><h2>🎯 <span data-i18n="focus"></span></h2><div class="tiny" data-i18n="focusSub"></div></div><span class="tag">ADHD ♡</span></div>
+          <div class="now-box">
+            <div class="now-label" data-i18n="focus"></div>
+            <div class="now-task" id="nowTask" data-i18n="noFocus"></div>
+            <div class="tiny" id="nowTiny"></div>
+            <div class="timer" id="focusTimer">05:00</div>
+          </div>
+          <div class="focus-actions">
+            <button class="mini-btn" id="pickOne" data-i18n="pickOne"></button>
+            <button class="mini-btn" id="makeTiny" data-i18n="makeTiny"></button>
+            <button class="mini-btn" id="timerBtn" data-i18n="start5"></button>
+            <button class="mini-btn" id="focusOnlyBtn" data-i18n="focusMode"></button>
+          </div>
+        </section>
 
-      <section class="card non-focus" id="brainCard">
-        <div class="section-title"><div><h2>🫧 <span data-i18n="brainDump"></span></h2><div class="tiny" data-i18n="todoSub"></div></div></div>
-        <div class="input-row"><input id="brainInput" data-i18n-placeholder="brainPlaceholder" maxlength="120"><button class="add" id="brainAdd">＋</button></div>
-      </section>
+        <section class="card non-focus" id="brainCard">
+          <div class="section-title"><div><h2>🫧 <span data-i18n="brainDump"></span></h2><div class="tiny" data-i18n="todoSub"></div></div></div>
+          <div class="input-row"><input id="brainInput" data-i18n-placeholder="brainPlaceholder" maxlength="120"><button class="add" id="brainAdd">＋</button></div>
+        </section>
+      </main>
 
-      <section class="card non-focus" id="habitsCard">
-        <div class="section-title"><div><h2>🌷 <span data-i18n="habits"></span></h2><div class="tiny" data-i18n="habitsSub"></div></div><span class="tag" id="habitPercent">0%</span></div>
-        <div class="progress-wrap"><div class="progress" id="habitProgress"></div></div>
-        <div class="input-row"><input id="habitInput" data-i18n-placeholder="addHabit" maxlength="70"><button class="add" id="addHabit">＋</button></div>
-        <div class="list" id="habitList"></div>
-      </section>
+      <aside class="stack non-focus">
+        <section class="card">
+          <div class="pet"><img class="pet-avatar" src="header_icon.webp" alt="Mochi bunny" id="petAvatar"><div><h2 data-i18n="mochi"></h2><div class="tiny" id="petText"></div></div></div>
+          <div class="stats">
+            <div class="stat"><b id="doneToday">0</b><span class="tiny" data-i18n="doneToday"></span></div>
+            <div class="stat fire-stat"><b id="homeStreak">0 🔥</b><span class="tiny" data-i18n="currentStreak"></span></div>
+            <div class="stat"><b id="petals">0</b><span class="tiny" data-i18n="petals"></span></div>
+          </div>
+        </section>
 
-      <section class="card non-focus" id="todoCard">
+        <section class="card">
+          <div class="section-title"><div><h2>💌 <span data-i18n="cozyNote"></span></h2><div class="tiny" data-i18n="cozySub"></div></div></div>
+          <div class="quote" id="quote"></div>
+          <div class="quote-actions"><button class="mini-btn" id="anotherQuote" data-i18n="anotherQuote"></button><button class="mini-btn" id="surpriseBtn">✨ <span data-i18n="surprise"></span></button></div>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page" id="page-habits" data-page="habits">
+    <div class="grid">
+      <main class="stack">
+        <section class="card" id="habitsCard">
+          <div class="section-title"><div><h2>🌷 <span data-i18n="habits"></span></h2><div class="tiny" data-i18n="habitsSub"></div></div><span class="tag" id="habitPercent">0%</span></div>
+          <div class="progress-wrap"><div class="progress" id="habitProgress"></div></div>
+          <div class="input-row"><input id="habitInput" data-i18n-placeholder="addHabit" maxlength="70"><button class="add" id="addHabit">＋</button></div>
+          <div class="list" id="habitList"></div>
+        </section>
+      </main>
+      <aside class="stack">
+        <section class="card streak-card">
+          <div class="section-title"><div><h2>🔥 <span data-i18n="streaks"></span></h2><div class="tiny" data-i18n="streaksSub"></div></div><span class="tag" id="bestStreakBadge"></span></div>
+          <div class="big-streak"><span class="fire">🔥</span><div><b id="mainStreak">0</b><span data-i18n="dayStreak"></span></div></div>
+          <div class="week-strip" id="weekStrip"></div>
+          <div class="streak-message" id="streakMessage"></div>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page" id="page-tasks" data-page="tasks">
+    <div class="single-column">
+      <section class="card" id="todoCard">
         <div class="section-title"><div><h2>🧁 <span data-i18n="todo"></span></h2><div class="tiny" data-i18n="todoSub"></div></div><span class="tag" id="todoCount"></span></div>
+        <div class="task-section-toolbar">
+          <div class="task-section-tabs" id="taskSections"></div>
+          <button class="section-add" id="addSectionBtn" title="Add section">＋</button>
+          <button class="section-add" id="manageSectionBtn" title="Manage section">•••</button>
+        </div>
         <div class="input-row"><input id="todoInput" data-i18n-placeholder="addTodo" maxlength="100"><button class="add" id="addTodo">＋</button></div>
         <div class="list" id="todoList"></div>
       </section>
-    </main>
+    </div>
+  </section>
 
-    <aside class="stack non-focus">
-      <section class="card">
-        <div class="pet"><img class="pet-avatar" src="header_icon.webp" alt="Mochi bunny" id="petAvatar"><div><h2 data-i18n="mochi"></h2><div class="tiny" id="petText"></div></div></div>
-        <div class="stats">
-          <div class="stat"><b id="doneToday">0</b><span class="tiny" data-i18n="doneToday"></span></div>
-          <div class="stat"><b id="bestStreak">0</b><span class="tiny" data-i18n="bestStreak"></span></div>
-          <div class="stat"><b id="petals">0</b><span class="tiny" data-i18n="petals"></span></div>
-        </div>
-      </section>
+  <section class="page" id="page-play" data-page="play">
+    <div class="grid">
+      <main class="stack">
+        <section class="card">
+          <div class="section-title"><div><h2>🎮 <span data-i18n="games"></span></h2><div class="tiny" data-i18n="gamesSub"></div></div><span class="tag">5</span></div>
+          <div class="games" id="gamesGrid"></div>
+        </section>
+      </main>
+      <aside class="stack">
+        <section class="card">
+          <div class="section-title"><div><h2>🎀 <span data-i18n="stickerGarden"></span></h2><div class="tiny" data-i18n="stickerSub"></div></div><span class="tag" id="stickerCount">0</span></div>
+          <div class="sticker-shelf" id="stickerShelf"></div>
+          <div class="quote" style="margin-top:10px" data-i18n="stickerTip"></div>
+          <div class="quote-actions">
+            <button class="mini-btn primary-soft" id="manageStickersBtn">🎀 <span data-i18n="manageStickers"></span></button>
+            <button class="mini-btn" id="clearStickers" data-i18n="clearStickers"></button>
+            <button class="mini-btn" id="freshDay" data-i18n="freshDay"></button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </section>
 
-      <section class="card">
-        <div class="section-title"><div><h2>💌 <span data-i18n="cozyNote"></span></h2><div class="tiny" data-i18n="cozySub"></div></div></div>
-        <div class="quote" id="quote"></div>
-        <div class="quote-actions"><button class="mini-btn" id="anotherQuote" data-i18n="anotherQuote"></button><button class="mini-btn" id="surpriseBtn">✨ <span data-i18n="surprise"></span></button></div>
-      </section>
+  <section class="page" id="page-style" data-page="style">
+    <div class="grid">
+      <main class="stack">
+        <section class="card appearance-card">
+          <div class="section-title"><div><h2>🎨 <span data-i18n="appearance"></span></h2><div class="tiny" data-i18n="appearanceSub"></div></div></div>
+          <div class="appearance-group">
+            <label data-i18n="theme"></label>
+            <select class="select full-select" id="themeSelect" aria-label="Theme">
+              <option value="pink" data-i18n="pink"></option>
+              <option value="dark" data-i18n="dark"></option>
+              <option value="halloween" data-i18n="halloween"></option>
+            </select>
+          </div>
+          <div class="appearance-group">
+            <label data-i18n="accentColor"></label>
+            <div class="color-palette" id="colorPalette"></div>
+          </div>
+          <div class="appearance-group opacity-control">
+            <div class="opacity-head"><label data-i18n="blockOpacity"></label><b id="opacityValue">84%</b></div>
+            <input type="range" id="blockOpacity" min="35" max="100" step="1" value="84">
+            <div class="tiny" data-i18n="opacityHint"></div>
+          </div>
+          <button class="mini-btn wide-action" id="manageStickersStyleBtn">🎀 <span data-i18n="manageStickers"></span></button>
+        </section>
 
-      <section class="card">
-        <div class="section-title"><div><h2>🎮 <span data-i18n="games"></span></h2><div class="tiny" data-i18n="gamesSub"></div></div><span class="tag">5</span></div>
-        <div class="games" id="gamesGrid"></div>
-      </section>
+        <section class="card">
+          <div class="section-title"><div><h2>⚙️ <span data-i18n="settings"></span></h2></div></div>
+          <div class="settings-grid">
+            <div class="setting"><label data-i18n="motion"></label><button class="mini-btn" id="motionBtn"></button></div>
+            <div class="setting"><label>♡</label><button class="mini-btn" id="exportBtn" data-i18n="export"></button></div>
+            <div class="setting"><label>♡</label><button class="mini-btn" id="importBtn" data-i18n="import"></button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
+            <div class="setting"><label>♡</label><button class="mini-btn" id="extraSpark">🎀 + ✨</button></div>
+          </div>
+        </section>
+      </main>
 
-      <section class="card">
-        <div class="section-title"><div><h2>🎀 <span data-i18n="stickerGarden"></span></h2><div class="tiny" data-i18n="stickerSub"></div></div></div>
-        <div class="sticker-shelf" id="stickerShelf"></div>
-        <div class="quote" style="margin-top:10px" data-i18n="stickerTip"></div>
-        <div class="quote-actions"><button class="mini-btn" id="clearStickers" data-i18n="clearStickers"></button><button class="mini-btn" id="freshDay" data-i18n="freshDay"></button></div>
-      </section>
+      <aside class="stack">
+        <section class="card">
+          <div class="donate-box"><div class="paw">🐾</div><div><b data-i18n="donate"></b><div class="tiny" data-i18n="donateSub"></div><button class="mini-btn" id="donateBtn" style="margin-top:8px" data-i18n="donateButton"></button></div></div>
+        </section>
+      </aside>
+    </div>
+  </section>
 
-      <section class="card">
-        <div class="section-title"><div><h2>⚙️ <span data-i18n="settings"></span></h2></div></div>
-        <div class="settings-grid">
-          <div class="setting"><label data-i18n="motion"></label><button class="mini-btn" id="motionBtn"></button></div>
-          <div class="setting"><label>♡</label><button class="mini-btn" id="exportBtn" data-i18n="export"></button></div>
-          <div class="setting"><label>♡</label><button class="mini-btn" id="importBtn" data-i18n="import"></button><input type="file" id="importFile" accept="application/json,.json" hidden></div>
-          <div class="setting"><label>♡</label><button class="mini-btn" id="extraSpark">🎀 + ✨</button></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="donate-box"><div class="paw">🐾</div><div><b data-i18n="donate"></b><div class="tiny" data-i18n="donateSub"></div><button class="mini-btn" id="donateBtn" style="margin-top:8px" data-i18n="donateButton"></button></div></div>
-      </section>
-    </aside>
-  </div>
   <div class="footer-note" data-i18n="footer"></div>
 </div>
 
+<nav class="bottom-nav" id="bottomNav" aria-label="Primary">
+  <button data-view="today" class="active"><span>🏠</span><b data-i18n="navToday"></b></button>
+  <button data-view="habits"><span>🔥</span><b data-i18n="navHabits"></b></button>
+  <button data-view="tasks"><span>☑️</span><b data-i18n="navTasks"></b></button>
+  <button data-view="play"><span>🎮</span><b data-i18n="navPlay"></b></button>
+  <button data-view="style"><span>🎨</span><b data-i18n="navStyle"></b></button>
+</nav>
+
 <div class="modal" id="gameModal"><div class="modal-card"><div class="modal-head"><div><h2 id="gameTitle">Game</h2><div class="tiny" id="gameHelp"></div></div><button class="modal-close" data-close="gameModal">×</button></div><div id="gameBody"></div></div></div>
 <div class="modal" id="rewardModal"><div class="modal-card"><div class="modal-head"><h2>🌷 <span data-i18n="gameWon"></span></h2><button class="modal-close" data-close="rewardModal">×</button></div><div class="reward-quote" id="rewardQuote"></div><button class="pill primary" style="width:100%" data-close="rewardModal" data-i18n="close"></button></div></div>
+<div class="modal" id="stickerModal"><div class="modal-card"><div class="modal-head"><div><h2>🎀 <span data-i18n="manageStickers"></span></h2><div class="tiny" data-i18n="stickerManagerSub"></div></div><button class="modal-close" data-close="stickerModal">×</button></div><div class="sticker-manager-actions"><button class="mini-btn" id="toggleStickersBtn"></button><button class="mini-btn" id="randomStickerBtn">✨ <span data-i18n="randomSticker"></span></button></div><div class="sticker-manager-list" id="stickerManagerList"></div></div></div>
 <div class="toast" id="toast"></div>
 <script src="locales.js"></script>
+<script src="locale-v12.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
